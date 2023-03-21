@@ -1,0 +1,27 @@
+In Mongoose, aggregation refers to the process of performing a series of operations on a collection of documents, and then returning the computed results. It
+Aggregation in Mongoose is done using the aggregate() function, which takes an array of pipeline stages as its argument. 
+Each stage in the pipeline represents a transformation that is applied to the input documents, and the output of one stage becomes the input of the next stage.
+
+db.collection.aggregate([
+    <stage1>,
+    <stage2>,
+    .
+    .
+    .
+    <stageN>
+])
+
+Each stage start form stage operator
+{ $<stageOperator> : { } }
+Example : 
+{ $match : { age : { $gt : 20 } } }
+
+Aggregation stages :
+$match
+$group
+$project
+$sort
+$count
+$limit
+$skip
+$out

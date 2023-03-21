@@ -1,0 +1,12 @@
+sorts input documents by certain fields
+{ $sort : { <field1> : <-1|1>, <field2> : <-1|1>} } 
+
+db.user.aggregate([
+    { $sort : { age : -1, id : 1 } }
+])
+
+db.user.aggregate([
+    { $group : { _id : "$age" } },
+    { $sort : { _id : -1 } }
+])
+=> [ { _id: 22 }, { _id: 21 } ]

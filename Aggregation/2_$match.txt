@@ -1,0 +1,10 @@
+Syntaxt
+{ $match : { <query> } }
+
+Example :
+db.user.aggregate([
+    { $match : { age : { $gt : 21 } } }
+])
+
+aggregate with only match stage works same as find 
+db.user.find( { age : { $gt : 21 } } )

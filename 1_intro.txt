@@ -1,0 +1,90 @@
+Node.js is an open-source, cross-platform, server-side JavaScript runtime environment built on top of the V8 JavaScript engine. It allows developers to write server-side JavaScript code that can run on a server, outside of a web browser. Node.js was created by Ryan Dahl in 2009, and it has since become a popular choice for building scalable and high-performance network applications.
+
+NodeJS is not a framework and it’s not a programming language
+
+No, Node.js is not a programming language, but rather a runtime environment that allows developers to run JavaScript code on the server-side. JavaScript is the programming language that Node.js uses, and Node.js provides a platform for executing JavaScript code outside of a web browser.
+
+Yes, the Node.js REPL (Read-Eval-Print-Loop) works similarly to the browser console. It provides an interactive command-line interface where you can enter JavaScript code and have it immediately evaluated and executed. You can use it to experiment with JavaScript code, test out small code snippets, and quickly test out the behavior of functions and objects.
+
+The Node.js REPL supports all of the standard JavaScript language features and syntax, as well as any additional features and modules provided by Node.js itself. You can use it to access built-in Node.js modules, work with files and directories, make HTTP requests, and perform other tasks that are not possible in a browser console.
+
+NPM gets installed into the system with installation of Node.js. The required packages and modules in Node project are installed using NPM.
+
+Difference between module and package :
+In Node.js, a package is a directory that contains a package.json file, which describes the package, its dependencies, and other metadata. A package can include one or more modules, as well as other assets such as images, stylesheets, and documentation.
+A module, on the other hand, is a single JavaScript file that can be loaded and executed by Node.js. A module can define functions, variables, and other objects that can be used by other modules or applications. Modules can be organized into packages for easier distribution and management.
+The main difference between a package and a module is that a package is a higher-level organizational unit that can contain multiple modules, while a module is a lower-level unit that contains a single JavaScript file.
+
+In the context of the Node Package Manager (npm), package.json is a file that contains metadata and configuration information for a Node.js package. It is typically located at the root directory of a Node.js project and is used to define various aspects of the project, such as its name, version, dependencies, and scripts.
+
+Creating a Node Project:
+To create a Node project, npm init is used in the folder in which user want to create project. The npm command line will ask a number of questions like name, license, scripts, description, author, keywords, version, main file etc. After npm is done creating the project, a package.json file will be visible in project folder as a proof that the project has been initialized.
+
+install packages :
+npm install package_name
+npm install package_name -g // install package globally
+
+check all global packages :
+npm list -g --depth=0
+This command will list all globally installed modules with their version numbers, but will not show any dependencies of those modules. The --depth=0 option tells npm to only list the top-level modules, and not their dependencies.
+To see a list of locally installed modules, navigate to your project directory and run the same command without the -g flag.
+
+Controlling where the package gets installed:
+To install a package and simultaneously save it in package.json file (in case using Node.js), add –save flag. The –save flag is default in npm install command so it is equal to npm install package_name command.
+Example:
+npm install express --save
+By –save flag one can control where the packages are to be installed.
+–save-prod : Using this packages will appear in Dependencies which is also by default.
+–save-dev : Using this packages will get appear in devDependencies and will only be used in the development mode.
+
+Uninstalling Packages:
+To uninstall packages using npm, follow the below syntax:
+Syntax:
+npm uninstall package_name
+
+Using Semantic Versioning to manage packages:
+4.7.6
+4 : Major Version => major changes, breaks API
+7 : Minor Version => minor changes, does not break API
+6 : Patches => bug fixes
+
+why can we require http module without installing it using npm?
+In Node.js, there are some built-in modules that do not require installation through npm. The http module is one of these built-in modules that comes pre-installed with Node.js, and is available for use in any Node.js project without the need for installation.
+When you use the require() function in Node.js to load a module, Node.js first looks for a built-in module with that name. If it finds one, it uses that module. If not, it looks for a module in the node_modules folder of your project, and if it still can't find one, it throws a "module not found" error.
+So in the case of the http module, Node.js looks for it in its built-in modules and finds it, which is why you can require it without needing to install it through npm.
+
+Node.js Modules : 
+1.Core Modules : global modules, built it
+2.local Modules : create module in files and export from the file
+3.Third-party Modules : npm modules
+
+Node.js also supports modules, but the syntax and behavior are slightly different from JavaScript modules. Node.js uses the CommonJS module system, which uses the require function to import modules and the module.exports object to export them. Unlike JavaScript modules, Node.js modules are designed to work in a server-side environment and can access Node.js-specific APIs.
+
+When using the require function in Node.js, you don't always need to include the ./ prefix to specify the file path for local modules. 
+
+
+Process is the program under action whereas a thread is the smallest segment of instructions that can be handled independently by a scheduler.
+Thread is basic unit of CPU utilization.
+If process have multiple threads of control, it can perform more than one task at a time.
+JS is single threaded becouse it have only one call stack which work synchronously.
+
+
+HTTP vs HTTPS : 
+The only difference between the two protocols is that HTTPS uses TLS (SSL) to encrypt normal HTTP requests and responses, and to digitally sign those requests and responses.
+SSL (Secure Sockets Layer) is a security protocol used in HTTPS (HTTP Secure) to provide secure communication over the network. SSL was the predecessor to the newer TLS (Transport Layer Security) protocol, which is now used in HTTPS.
+The SSL/TLS protocol provides encryption, integrity, and authentication for network communication between the client and the server. When a client connects to a server over HTTPS, the SSL/TLS protocol establishes a secure connection between the client and the server, and all data exchanged between them is encrypted to prevent unauthorized access.
+SSL/TLS uses a combination of symmetric and asymmetric encryption to provide secure communication. When a client connects to a server, they first perform a "handshake" to agree on a shared secret key that will be used for symmetric encryption. This shared key is then used to encrypt all data exchanged between the client and the server.
+SSL/TLS also provides integrity protection by using a Message Authentication Code (MAC) to verify the integrity of the data being exchanged. This ensures that the data has not been tampered with or modified during transmission.
+Finally, SSL/TLS provides authentication by using digital certificates to verify the identity of the server. The digital certificate is issued by a trusted Certificate Authority (CA), and it contains the server's public key and other identifying information. The client can verify the authenticity of the server by checking the digital certificate and verifying that it was issued by a trusted CA.
+In summary, SSL is a security protocol used in HTTPS to provide secure communication over the network. It uses encryption, integrity protection, and authentication to ensure that data exchanged between the client and the server is secure and private.
+SSL (Secure Sockets Layer) is a security protocol that operates at the transport layer of the OSI (Open Systems Interconnection) mode
+
+SSL use wich encryption algorithm?
+SSL (Secure Sockets Layer) and its successor TLS (Transport Layer Security) support a variety of encryption algorithms for secure communication over the network. 
+The choice of encryption algorithm depends on the negotiated cipher suite between the client and server during the SSL/TLS handshake.
+The SSL/TLS handshake process involves the client and server agreeing on a shared cipher suite, which defines the encryption algorithms and other security parameters that will be used for the session.
+Some of the commonly used encryption algorithms in SSL/TLS include:
+1. symmetric-key encryption algorithm
+2. asymmetric-key encryption algorithm
+3. hashing algorithm
+The choice of encryption algorithm and cipher suite depends on factors such as the level of security required, the performance requirements, and the compatibility with the client and server software.

@@ -1,0 +1,64 @@
+Groups into documents by certain expressions 
+{ $group : { _id : <expressions>, 
+<field1> :  { <accumulator1> : <expression1> },
+... } }
+
+_id is mandatory for each group
+
+Example : 
+db.user.aggregate([ {$group : { _id : "$age"  } } ])
+=> [ { _id: 22 }, { _id: 21 } ]
+
+db.user.aggregate([{ $group: { _id: { age : "$age", salary :  "$salary" } } } ] )
+=> [
+  { _id: { age: 21, salary: 8000 } }, // we have to records with same age and salary in db
+  { _id: { age: 22, salary: 10000 } },
+  { _id: { age: 21, salary: 7000 } }
+]
+
+db.user.aggregate([{ $group: { _id: { age : "$age", income :  "$salary" } } } ] )
+=> [
+  { _id: { age: 21, income: 8000 } }, // we have to records with same age and salary in db
+  { _id: { age: 22, income: 10000 } },
+  { _id: { age: 21, income: 7000 } }
+]
+
+db.user.aggregate( [ 
+    { $match : { age : 21  }  }, 
+    { $group :  { _id : { incoms : "$salary"  }  }  }  
+] )
+=> [ { _id: { incoms: 8000 } }, { _id: { incoms: 7000 } } ]
+
+db.user.aggregate( [ 
+    { $group :  { _id : { incoms : "$salary"  }  }  },
+    { $match : { age : 21  }  }
+] )
+=> no data
+
+db.user.aggregate( [ 
+    { $group :  { _id : { incoms : "$salary"  }  }  }
+] )
+
+db.user.aggregate( [ 
+    { $group :  { _id : { incoms : "$salary"  }  }  },
+    { $match : { _id : 10000 }  }
+] )
+=> no data
+
+db.user.aggregate( [ 
+    { $group :  { _id : { incoms : "$salary"  }  }  },
+    { $match : { _id : { incoms : 10000 } }  }
+] )
+=> [ { _id: { incoms: 10000 } } ]
+
+db.user.aggregate( [ 
+    { $group :  { _id : { incoms : "$salary"  }  }  },
+    { $match : { _id.incoms : 10000  }  }
+] )
+=> Error
+
+db.user.aggregate( [ 
+    { $group :  { _id : { incoms : "$salary"  }  }  },
+    { $match : { "_id.incoms" : 10000  }  }
+] )
+=> [ { _id: { incoms: 10000 } } ]

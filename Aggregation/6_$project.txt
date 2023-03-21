@@ -1,0 +1,2 @@
+includes, excludes or adds new fields
+{ $project : { <field1> : <1>, <field2> : <0>, <newField> : <expression> } }

@@ -1,0 +1,14 @@
+Yes, Express provides the res.write() method, which is used to write data to the response body in chunks. This method can be used to send a response to the client in multiple parts, rather than sending the entire response at once using the res.send() method.
+Here's an example of how to use res.write() in an Express route:
+
+app.get('/', (req, res) => {
+  res.write('This is the first part of the response');
+  res.write('This is the second part of the response');
+  res.end();
+});
+
+In this example, the res.write() method is used to send two parts of the response body to the client, and the res.end() method is called to indicate that the response is complete.
+Note that using res.write() to send the response in chunks can be useful when you need to send a large amount of data, such as a file or a stream, and want to avoid buffering the entire response in memory. However, in most cases, it's simpler and more efficient to use the res.send() method to send the entire response at once, since it automatically sets the correct headers and status code for the response.
+
+
+
